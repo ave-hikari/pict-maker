@@ -409,6 +409,7 @@
 				184465A81B2D97C600D8808F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		184465A91B2D97C600D8808F /* Build configuration list for PBXNativeTarget "StampMakerTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				184465AB1B2D97C600D8808F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
