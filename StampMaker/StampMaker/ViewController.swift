@@ -4,24 +4,11 @@ import UIKit
 
 class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    @IBOutlet weak var mainImage: UIImageView!
-    
-    @IBOutlet weak var setText: UIButton!
-    @IBOutlet weak var newImage: UIImage!
-    
-    @IBOutlet weak var addText: UITextField!
-    
-    var stampLabel: UILabel!
-    
-    var stampImageView: UIImageView!
-    var inputText: String!
-    
     // MARK:lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        addText.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,56 +18,9 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     // MARK:IBAction
     
-    @IBAction func tapLibBtn(sender: AnyObject) {
-        println(__FUNCTION__)
-        self.pickImageFromLibrary()
-    }
-    
-    @IBAction func tapAddTextBtn(sender: AnyObject) {
+    @IBAction func tapLibraryButton(sender: AnyObject) {
         println(__FUNCTION__)
         
-        //ラベルが画面上にすでに載せられている場合
-        if (self.stampLabel != nil) {
-            setText.setTitle("のせる", forState: UIControlState.Normal)
-            let tempImage = self.drawText(mainImage.image!, addText: addText.text)
-            mainImage.image = tempImage
-            self.stampLabel.removeFromSuperview()
-            self.stampLabel = nil
-            //何度もラベルを画像に貼れるように画像にラベルをセットし終わったらtextFieldを空にする
-            addText.text = nil
-            
-        } else {
-            self.stampLabel = UILabel(frame: CGRectMake(50, 50, 120, 20));
-            self.stampLabel.text = addText.text
-            self.stampLabel.textColor = UIColor.whiteColor()
-            self.stampLabel.backgroundColor = UIColor.clearColor()
-            self.mainImage.addSubview(stampLabel)
-            setText.setTitle("画像にラベル保存", forState: UIControlState.Normal)
-        }
-    }
-    
-    //保存ボタンを押す
-    @IBAction func tapSaveBtn(sender: AnyObject) {
-        println(__FUNCTION__)
-        UIImageWriteToSavedPhotosAlbum(mainImage.image, nil, nil, nil)
-        
-        let saveAlert = UIAlertController(title: nil, message: "画像を保存しました", preferredStyle: .Alert)
-        self.presentViewController(saveAlert, animated: true, completion: { () -> Void in
-            let delay = 3.0 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            //別スレッドで3秒間遅延させている間アラートを表示する。3秒後にアラートを閉じる
-            dispatch_after(time, dispatch_get_main_queue(),{
-                self.dismissViewControllerAnimated(true, completion: nil)
-                //保存が終わったらメインスレッドで作成したimageViewを消す
-                NSOperationQueue.mainQueue().addOperationWithBlock({
-                    self.mainImage.image = nil
-                })
-            })
-        })
-    }
-    
-    // ライブラリから写真を選択する
-    func pickImageFromLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             let controller = UIImagePickerController()
             controller.delegate = self
@@ -91,100 +31,33 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         }
     }
     
+    @IBAction func tapCameraButton(sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            //カメラで写真を撮った後、正方形にトリミングする
+            controller.allowsEditing = true
+            controller.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
+    
     // 写真を選択した時に呼ばれる
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        // 遷移するViewを定義する.
+        let drawViewController:DrawViewController = DrawViewController(nibName: "DrawViewController", bundle: NSBundle.mainBundle())
         //選択時トリミングした画像を使用する
         if info[UIImagePickerControllerEditedImage] != nil {
             let image = info[UIImagePickerControllerEditedImage] as! UIImage
-            mainImage.image = image
+            drawViewController.tempImage = image
             println(image)
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        self.navigationController?.pushViewController(drawViewController, animated: true)
+
     }
 }
 
-extension ViewController {
-    func drawText(image:UIImage, addText:String) -> UIImage{
-        self.inputText = addText
-        let font = UIFont.boldSystemFontOfSize(50)
-        
-        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
-        //空のコンテキスト（保存するための画像）を選択した画像と同じサイズで設定
-        UIGraphicsBeginImageContext(image.size);
-        //そこに描画することを設定
-        image.drawInRect(imageRect)
-        
-        //ラベルの描画領域を設定する
-        let textRect  = CGRectMake((self.stampLabel.frame.origin.x * image.size.width) / mainImage.frame.width, (self.stampLabel.frame.origin.y * image.size.height) / mainImage.frame.height, image.size.width - 5, image.size.height - 5)
-        
-        //プロパティつくる
-        let textDrawView = UIImageView()
-        
-        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-        let textFontAttributes = [
-            NSFontAttributeName: font,
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSParagraphStyleAttributeName: textStyle
-        ]
-        //varの中には何度も入れなおせるが、letには一度きりしか値を入れられない
-        addText.drawInRect(textRect, withAttributes: textFontAttributes)
-        //コンテキストをイメージとして生成する
-        self.newImage = UIGraphicsGetImageFromCurrentImageContext();
-        //イメージ生成かんりょう
-        UIGraphicsEndImageContext()
-        
-        return self.newImage
-    }
-    
-    //作ったラベルのタッチを検知する
-//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        super.touchesEnded(touches, withEvent: event)
-//        
-//        for touch: AnyObject in touches{
-//            var t: UITouch = touch as! UITouch
-//            if t.view.tag == self.label1.tag{
-//                println("touch!!");
-//                
-//            }
-//            //タッチした座標を取得
-//            let location = touch.locationInView(view)
-//    
-//            //新規に貼り付けたいスタンプを用意
-//            var stampImage: UIImage!
-//            stampImage = UIImage(named: "wooser.png")
-//            
-//            self.stampImageView = UIImageView(image: stampImage)
-//            self.stampImageView.frame = CGRectMake(location.x - stampImage!.size.width/2, location.y - stampImage!.size.height/2, stampImage!.size.width, stampImage!.size.height)
-//            self.view.addSubview(stampImageView)
-//            
-//            self.stampLabel = UILabel(frame: CGRectMake(location.x - stampImage!.size.width/2, location.y - stampImage!.size.height/2, 120, 20));
-//            self.stampLabel.text = self.inputText
-//            self.stampLabel.textColor = UIColor.whiteColor()
-//            
-//            self.stampLabel.backgroundColor = UIColor.clearColor()
-//            self.view.addSubview(stampLabel)
-//        }
-//    }
-    
-    //ドラッグしたときによばれる
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        super.touchesMoved(touches, withEvent: event)
-        
-        for touch: AnyObject in touches{
-            
-        let touchLocation = touch.locationInView(view)
-            
-        self.stampLabel.transform = CGAffineTransformMakeTranslation(touchLocation.x - self.stampLabel.center.x, touchLocation.y - self.stampLabel.center.y)
-            
-        }
-    }
-}
-
-
-extension ViewController:UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-}
 
