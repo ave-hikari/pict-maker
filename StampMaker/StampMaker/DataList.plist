@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PICKER_COLOR_LIST</key>
+        <array>
+            <string>white</string>
+            <string>black</string>
+            <string>blue</string>
+            <string>orange</string>
+            <string>pink</string>
+            <string>green</string>
+            <string>red</string>
+            <string>navy</string>
+            <string>glay</string>
+            <string>yellow</string>
+        </array>
+    </dict>
+</plist>

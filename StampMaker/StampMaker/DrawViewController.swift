@@ -2,7 +2,7 @@
 
 import UIKit
 
-class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     
     @IBOutlet weak var mainImage: UIImageView!
     
@@ -17,12 +17,20 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     var inputText: String!
     var saveButton: UIBarButtonItem!
     
+    @IBOutlet weak var labelColorPicker: UIPickerView!
+    var pickColorArr: NSArray = ["white","black","blue","white","red"]
+    var tempColor: UIColor!
+    
     // MARK:lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         addText.delegate = self
+        
+        labelColorPicker.delegate = self
+        labelColorPicker.dataSource = self
+        self.view.addSubview(labelColorPicker)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -82,7 +90,6 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 self.dismissViewControllerAnimated(true, completion: nil)
                 //保存が終わったらメインスレッドで作成したimageViewを消す
                 NSOperationQueue.mainQueue().addOperationWithBlock({
-//                    self.mainImage.image = nil
                     self.navigationController?.popViewControllerAnimated(true)
                     
                 })
@@ -112,6 +119,40 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    //表示列
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //表示するpickerViewの列数
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickColorArr.count
+    }
+    
+    //表示内容
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String {
+        return pickColorArr[row] as! String
+    }
+    
+    //ピッカー選択時
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if(self.stampLabel != nil){
+        
+        let path = NSBundle.mainBundle().pathForResource("DataList", ofType: "plist")
+        let dictionary = NSDictionary(contentsOfFile: path!)
+        
+        //plistからカラーネームリストを取得
+        let colorArr:NSArray = dictionary!.objectForKey("PICKER_COLOR_LIST")! as! NSArray
+            for value in colorArr {
+                if(value .isEqual(pickColorArr[row])){
+                    self.stampLabel.textColor = getDrawColor(value as! String)
+                }
+            }
+            tempColor = self.stampLabel.textColor
+        }
+    }
+    
 }
 
 extension DrawViewController {
@@ -134,7 +175,7 @@ extension DrawViewController {
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         let textFontAttributes = [
             NSFontAttributeName: font,
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSForegroundColorAttributeName: tempColor,
             NSParagraphStyleAttributeName: textStyle
         ]
         //varの中には何度も入れなおせるが、letには一度きりしか値を入れられない
@@ -145,6 +186,22 @@ extension DrawViewController {
         UIGraphicsEndImageContext()
         
         return self.newImage
+    }
+    
+    //TODO: 修正中
+    //ピッカーの選択したカラーネームに合わせて色を選択する
+    func getDrawColor(colorName: String) -> UIColor{
+        let textColor: UIColor!
+        if(colorName == "white"){
+            textColor = UIColor.whiteColor()
+        }else if(colorName == "black"){
+            textColor = UIColor.blackColor()
+        }else if(colorName == "blue"){
+            textColor = UIColor(red: 65, green: 105, blue: 225, alpha: 1.0)
+        }else{
+            textColor = UIColor.blueColor()
+        }
+        return textColor
     }
     
     //ドラッグしたときによばれる
