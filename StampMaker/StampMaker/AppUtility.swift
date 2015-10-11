@@ -9,10 +9,6 @@ class AppUtility {
     static func colorWithHexString (hex:String) -> UIColor {
         
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
-        //先頭の#を省く
-        if (cString.hasPrefix("#")) {
-            cString = (cString as NSString).substringFromIndex(1)
-        }
         
         if (count(cString as String) != 6) {
             return UIColor.grayColor()
