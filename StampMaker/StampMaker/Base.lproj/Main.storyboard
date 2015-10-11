@@ -34,33 +34,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZT6-V3-LUG">
-                                <rect key="frame" x="131" y="251" width="152" height="30"/>
-                                <state key="normal" title="Camera">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapCameraButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SSe-Ln-erI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qq6-xU-2uJ">
-                                <rect key="frame" x="131" y="169" width="152" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applabel" translatesAutoresizingMaskIntoConstraints="NO" id="us8-fj-wz2">
+                                <rect key="frame" x="28" y="128" width="358" height="80"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="3d3-GV-K28">
+                                <rect key="frame" x="43" y="280" width="86" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="NGp-Bp-vUd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="library" translatesAutoresizingMaskIntoConstraints="NO" id="PAq-xX-MPA">
+                                <rect key="frame" x="43" y="392" width="86" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="7RK-po-1DX"/>
+                                    <constraint firstAttribute="width" constant="86" id="N9L-QQ-RVf"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfz-af-PZE">
+                                <rect key="frame" x="137" y="392" width="157" height="79"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="36"/>
                                 <state key="normal" title="Library">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="tapLibraryButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bli-mx-tpV"/>
+                                    <action selector="tapLibraryButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pfr-QN-ojB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6j-Dz-npP">
+                                <rect key="frame" x="137" y="280" width="157" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="157" id="AAm-on-EQT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="36"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapCameraButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZqD-Qc-fbo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8Q-co-NMo">
+                                <rect key="frame" x="9" y="643" width="396" height="36.5"/>
+                                <string key="text">Copyright© Hikari. 
+All rights reserved.</string>
+                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.98621107440019529" blue="0.96728758896502598" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ZT6-V3-LUG" firstAttribute="top" secondItem="qq6-xU-2uJ" secondAttribute="bottom" constant="52" id="BBh-Rh-FFo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZT6-V3-LUG" secondAttribute="trailing" constant="115" id="Llk-xa-T3s"/>
-                            <constraint firstItem="qq6-xU-2uJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="115" id="UnM-fy-SCd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qq6-xU-2uJ" secondAttribute="trailing" constant="115" id="Yc0-FF-Oet"/>
-                            <constraint firstItem="ZT6-V3-LUG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="115" id="esq-Xv-HR5"/>
-                            <constraint firstItem="qq6-xU-2uJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="105" id="zEn-ib-XKx"/>
+                            <constraint firstItem="a8Q-co-NMo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-7" id="0oi-Zd-Sar"/>
+                            <constraint firstItem="PAq-xX-MPA" firstAttribute="top" secondItem="3d3-GV-K28" secondAttribute="bottom" constant="33" id="0pI-1F-nen"/>
+                            <constraint firstItem="us8-fj-wz2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="B76-UV-zT6"/>
+                            <constraint firstItem="3d3-GV-K28" firstAttribute="trailing" secondItem="PAq-xX-MPA" secondAttribute="trailing" id="TGh-ux-A4v"/>
+                            <constraint firstItem="PAq-xX-MPA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="27" id="VuS-gi-ShP"/>
+                            <constraint firstItem="U6j-Dz-npP" firstAttribute="leading" secondItem="3d3-GV-K28" secondAttribute="trailing" constant="8" symbolic="YES" id="YNq-Ak-xrs"/>
+                            <constraint firstItem="qfz-af-PZE" firstAttribute="bottom" secondItem="PAq-xX-MPA" secondAttribute="bottom" id="ZNn-tX-Cbb"/>
+                            <constraint firstItem="3d3-GV-K28" firstAttribute="leading" secondItem="PAq-xX-MPA" secondAttribute="leading" id="clY-op-Zi6"/>
+                            <constraint firstItem="qfz-af-PZE" firstAttribute="top" secondItem="PAq-xX-MPA" secondAttribute="top" id="f2Q-ZM-AdN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="us8-fj-wz2" secondAttribute="trailing" constant="12" id="fMv-5X-eUI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a8Q-co-NMo" secondAttribute="trailing" constant="-7" id="fca-HK-N9O"/>
+                            <constraint firstItem="3d3-GV-K28" firstAttribute="top" secondItem="U6j-Dz-npP" secondAttribute="top" id="fvL-cx-yHo"/>
+                            <constraint firstItem="us8-fj-wz2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="12" id="gcp-OB-eOm"/>
+                            <constraint firstItem="3d3-GV-K28" firstAttribute="top" secondItem="us8-fj-wz2" secondAttribute="bottom" constant="72" id="kgG-lV-D6h"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="a8Q-co-NMo" secondAttribute="bottom" constant="56.5" id="njb-cP-xor"/>
+                            <constraint firstItem="qfz-af-PZE" firstAttribute="leading" secondItem="U6j-Dz-npP" secondAttribute="leading" id="rJ0-HW-AyA"/>
+                            <constraint firstItem="qfz-af-PZE" firstAttribute="trailing" secondItem="U6j-Dz-npP" secondAttribute="trailing" id="yLu-OJ-eq0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oNb-ug-Qsf"/>
@@ -68,7 +110,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-609.5" y="242.5"/>
+            <point key="canvasLocation" x="-610" y="242"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="applabel" width="300" height="80"/>
+        <image name="camera" width="200" height="175"/>
+        <image name="library" width="200" height="175"/>
+    </resources>
 </document>

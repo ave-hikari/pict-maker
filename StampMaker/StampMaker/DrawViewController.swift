@@ -2,6 +2,11 @@
 
 import UIKit
 
+struct ColorInfo {
+    var name: String?
+    var color: UIColor?
+}
+
 class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     
     @IBOutlet weak var mainImage: UIImageView!
@@ -18,7 +23,19 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var labelColorPicker: UIPickerView!
-    var pickColorArr: NSArray = ["white","black","blue","white","red"]
+    var pickColorArr: [ColorInfo] = [
+        ColorInfo(name: "white", color: AppUtility.colorWithHexString("ffffff")),
+        ColorInfo(name: "black", color: AppUtility.colorWithHexString("000000")),
+        ColorInfo(name: "dodger blue", color: AppUtility.colorWithHexString("1E90FF")),
+        ColorInfo(name: "coral orange", color: AppUtility.colorWithHexString("ff7f50")),
+        ColorInfo(name: "deep pink", color: AppUtility.colorWithHexString("FF1493")),
+        ColorInfo(name: "salmon pink", color: AppUtility.colorWithHexString("FA8072")),
+        ColorInfo(name: "medium seagreen", color: AppUtility.colorWithHexString("3CB371")),
+        ColorInfo(name: "crimson red", color: AppUtility.colorWithHexString("DC143C")),
+        ColorInfo(name: "navy", color: AppUtility.colorWithHexString("000080")),
+        ColorInfo(name: "dark gray", color: AppUtility.colorWithHexString("a9a9a9")),
+        ColorInfo(name: "gold", color: AppUtility.colorWithHexString("ffd700"))
+    ]
     var tempColor: UIColor!
     
     // MARK:lifecycle
@@ -33,6 +50,10 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.view.addSubview(labelColorPicker)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
+
     override func viewDidAppear(animated: Bool) {
         // ライブラリで選択した画像をimageViewのimageにセット
         mainImage.image = tempImage
@@ -46,19 +67,13 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK:IBAction
-    
-    @IBAction func tapLibBtn(sender: AnyObject) {
-        println(__FUNCTION__)
-        self.pickImageFromLibrary()
-    }
     
     @IBAction func tapAddTextBtn(sender: AnyObject) {
         println(__FUNCTION__)
         
         //ラベルが画面上にすでに載せられている場合
         if (self.stampLabel != nil) {
-            setText.setTitle("のせる", forState: UIControlState.Normal)
+            setText.setTitle("paste", forState: UIControlState.Normal)
             let tempImage = self.drawText(mainImage.image!, addText: addText.text)
             mainImage.image = tempImage
             self.stampLabel.removeFromSuperview()
@@ -72,11 +87,11 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             self.stampLabel.textColor = UIColor.whiteColor()
             self.stampLabel.backgroundColor = UIColor.clearColor()
             self.mainImage.addSubview(stampLabel)
-            setText.setTitle("画像にラベル保存", forState: UIControlState.Normal)
+            setText.setTitle("set", forState: UIControlState.Normal)
         }
     }
     
-    //保存ボタンを押す
+    //保存ボタンをタップするとライブラリに保存し、確認アラートを表示する
     func tappedSaveButton(sender: UIButton) {
         println(__FUNCTION__)
         UIImageWriteToSavedPhotosAlbum(mainImage.image, nil, nil, nil)
@@ -97,29 +112,6 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         })
     }
     
-    // ライブラリから写真を選択する
-    func pickImageFromLibrary() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-            let controller = UIImagePickerController()
-            controller.delegate = self
-            //ライブラリから選択後、正方形にトリミングする
-            controller.allowsEditing = true
-            controller.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
-    }
-    
-    // 写真を選択した時に呼ばれる
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        //選択時トリミングした画像を使用する
-        if info[UIImagePickerControllerEditedImage] != nil {
-            let image = info[UIImagePickerControllerEditedImage] as! UIImage
-            mainImage.image = image
-            println(image)
-        }
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     //表示列
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -132,23 +124,13 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     //表示内容
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String {
-        return pickColorArr[row] as! String
+        return pickColorArr[row].name!
     }
     
     //ピッカー選択時
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(self.stampLabel != nil){
-        
-        let path = NSBundle.mainBundle().pathForResource("DataList", ofType: "plist")
-        let dictionary = NSDictionary(contentsOfFile: path!)
-        
-        //plistからカラーネームリストを取得
-        let colorArr:NSArray = dictionary!.objectForKey("PICKER_COLOR_LIST")! as! NSArray
-            for value in colorArr {
-                if(value .isEqual(pickColorArr[row])){
-                    self.stampLabel.textColor = getDrawColor(value as! String)
-                }
-            }
+            self.stampLabel.textColor = pickColorArr[row].color
             tempColor = self.stampLabel.textColor
         }
     }
@@ -178,7 +160,6 @@ extension DrawViewController {
             NSForegroundColorAttributeName: tempColor,
             NSParagraphStyleAttributeName: textStyle
         ]
-        //varの中には何度も入れなおせるが、letには一度きりしか値を入れられない
         addText.drawInRect(textRect, withAttributes: textFontAttributes)
         //コンテキストをイメージとして生成する
         self.newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -186,22 +167,6 @@ extension DrawViewController {
         UIGraphicsEndImageContext()
         
         return self.newImage
-    }
-    
-    //TODO: 修正中
-    //ピッカーの選択したカラーネームに合わせて色を選択する
-    func getDrawColor(colorName: String) -> UIColor{
-        let textColor: UIColor!
-        if(colorName == "white"){
-            textColor = UIColor.whiteColor()
-        }else if(colorName == "black"){
-            textColor = UIColor.blackColor()
-        }else if(colorName == "blue"){
-            textColor = UIColor(red: 65, green: 105, blue: 225, alpha: 1.0)
-        }else{
-            textColor = UIColor.blueColor()
-        }
-        return textColor
     }
     
     //ドラッグしたときによばれる

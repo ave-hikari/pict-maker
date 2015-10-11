@@ -15,7 +15,7 @@
 		184465A31B2D97C600D8808F /* StampMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184465A21B2D97C600D8808F /* StampMakerTests.swift */; };
 		2F0AA1C61BBD9CB6003227A7 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F0AA1C51BBD9CB6003227A7 /* DrawViewController.xib */; };
 		2F0AA1C81BBD9E2C003227A7 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0AA1C71BBD9E2C003227A7 /* DrawViewController.swift */; };
-		2FB345521BC17772002D6574 /* DataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FB345511BC17772002D6574 /* DataList.plist */; };
+		2F956E3B1BCA48AA0029F824 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F956E3A1BCA48AA0029F824 /* AppUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		184465A21B2D97C600D8808F /* StampMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampMakerTests.swift; sourceTree = "<group>"; };
 		2F0AA1C51BBD9CB6003227A7 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		2F0AA1C71BBD9E2C003227A7 /* DrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
-		2FB345511BC17772002D6574 /* DataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DataList.plist; sourceTree = "<group>"; };
+		2F956E3A1BCA48AA0029F824 /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,7 @@
 				1844658A1B2D97C600D8808F /* Supporting Files */,
 				2F0AA1C51BBD9CB6003227A7 /* DrawViewController.xib */,
 				2F0AA1C71BBD9E2C003227A7 /* DrawViewController.swift */,
-				2FB345511BC17772002D6574 /* DataList.plist */,
+				2F956E3A1BCA48AA0029F824 /* AppUtility.swift */,
 			);
 			name = PictMaker;
 			path = StampMaker;
@@ -204,7 +204,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FB345521BC17772002D6574 /* DataList.plist in Resources */,
 				2F0AA1C61BBD9CB6003227A7 /* DrawViewController.xib in Resources */,
 				184465921B2D97C600D8808F /* Main.storyboard in Resources */,
 				184465971B2D97C600D8808F /* LaunchScreen.xib in Resources */,
@@ -226,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F956E3B1BCA48AA0029F824 /* AppUtility.swift in Sources */,
 				2F0AA1C81BBD9E2C003227A7 /* DrawViewController.swift in Sources */,
 				1844658F1B2D97C600D8808F /* ViewController.swift in Sources */,
 				1844658D1B2D97C600D8808F /* AppDelegate.swift in Sources */,
