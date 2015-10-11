@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applabel" translatesAutoresizingMaskIntoConstraints="NO" id="us8-fj-wz2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applabel" translatesAutoresizingMaskIntoConstraints="NO" id="us8-fj-wz2">
                                 <rect key="frame" x="28" y="128" width="358" height="80"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="3d3-GV-K28">
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8Q-co-NMo">
-                                <rect key="frame" x="9" y="643" width="396" height="36.5"/>
+                                <rect key="frame" x="9" y="643" width="396" height="37"/>
                                 <string key="text">Copyright© Hikari. 
 All rights reserved.</string>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="18"/>
@@ -88,19 +88,19 @@ All rights reserved.</string>
                         <constraints>
                             <constraint firstItem="a8Q-co-NMo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-7" id="0oi-Zd-Sar"/>
                             <constraint firstItem="PAq-xX-MPA" firstAttribute="top" secondItem="3d3-GV-K28" secondAttribute="bottom" constant="33" id="0pI-1F-nen"/>
-                            <constraint firstItem="us8-fj-wz2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="B76-UV-zT6"/>
                             <constraint firstItem="3d3-GV-K28" firstAttribute="trailing" secondItem="PAq-xX-MPA" secondAttribute="trailing" id="TGh-ux-A4v"/>
                             <constraint firstItem="PAq-xX-MPA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="27" id="VuS-gi-ShP"/>
                             <constraint firstItem="U6j-Dz-npP" firstAttribute="leading" secondItem="3d3-GV-K28" secondAttribute="trailing" constant="8" symbolic="YES" id="YNq-Ak-xrs"/>
                             <constraint firstItem="qfz-af-PZE" firstAttribute="bottom" secondItem="PAq-xX-MPA" secondAttribute="bottom" id="ZNn-tX-Cbb"/>
                             <constraint firstItem="3d3-GV-K28" firstAttribute="leading" secondItem="PAq-xX-MPA" secondAttribute="leading" id="clY-op-Zi6"/>
                             <constraint firstItem="qfz-af-PZE" firstAttribute="top" secondItem="PAq-xX-MPA" secondAttribute="top" id="f2Q-ZM-AdN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="us8-fj-wz2" secondAttribute="trailing" constant="12" id="fMv-5X-eUI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a8Q-co-NMo" secondAttribute="trailing" constant="-7" id="fca-HK-N9O"/>
                             <constraint firstItem="3d3-GV-K28" firstAttribute="top" secondItem="U6j-Dz-npP" secondAttribute="top" id="fvL-cx-yHo"/>
-                            <constraint firstItem="us8-fj-wz2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="12" id="gcp-OB-eOm"/>
-                            <constraint firstItem="3d3-GV-K28" firstAttribute="top" secondItem="us8-fj-wz2" secondAttribute="bottom" constant="72" id="kgG-lV-D6h"/>
+                            <constraint firstItem="us8-fj-wz2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="12" id="htW-xf-uQb"/>
+                            <constraint firstItem="us8-fj-wz2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="iSk-0m-kxn"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="a8Q-co-NMo" secondAttribute="bottom" constant="56.5" id="njb-cP-xor"/>
+                            <constraint firstItem="us8-fj-wz2" firstAttribute="centerX" secondItem="a8Q-co-NMo" secondAttribute="centerX" id="pGu-Au-KJ3"/>
+                            <constraint firstItem="U6j-Dz-npP" firstAttribute="top" secondItem="us8-fj-wz2" secondAttribute="bottom" constant="72" id="pZq-Dd-6C9"/>
                             <constraint firstItem="qfz-af-PZE" firstAttribute="leading" secondItem="U6j-Dz-npP" secondAttribute="leading" id="rJ0-HW-AyA"/>
                             <constraint firstItem="qfz-af-PZE" firstAttribute="trailing" secondItem="U6j-Dz-npP" secondAttribute="trailing" id="yLu-OJ-eq0"/>
                         </constraints>
