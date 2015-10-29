@@ -38,20 +38,20 @@
                                 <rect key="frame" x="28" y="128" width="358" height="80"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="3d3-GV-K28">
-                                <rect key="frame" x="43" y="280" width="86" height="79"/>
+                                <rect key="frame" x="43" y="250" width="86" height="79"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="79" id="NGp-Bp-vUd"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="library" translatesAutoresizingMaskIntoConstraints="NO" id="PAq-xX-MPA">
-                                <rect key="frame" x="43" y="392" width="86" height="79"/>
+                                <rect key="frame" x="43" y="352" width="86" height="79"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="79" id="7RK-po-1DX"/>
                                     <constraint firstAttribute="width" constant="86" id="N9L-QQ-RVf"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfz-af-PZE">
-                                <rect key="frame" x="137" y="392" width="157" height="79"/>
+                                <rect key="frame" x="137" y="352" width="157" height="79"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="36"/>
                                 <state key="normal" title="Library">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,7 +62,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6j-Dz-npP">
-                                <rect key="frame" x="137" y="280" width="157" height="54"/>
+                                <rect key="frame" x="137" y="250" width="157" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="157" id="AAm-on-EQT"/>
                                 </constraints>
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8Q-co-NMo">
-                                <rect key="frame" x="9" y="643" width="396" height="37"/>
+                                <rect key="frame" x="9" y="679.5" width="396" height="36.5"/>
                                 <string key="text">Copyright© Hikari. 
 All rights reserved.</string>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="18"/>
@@ -87,7 +87,7 @@ All rights reserved.</string>
                         <color key="backgroundColor" red="1" green="0.98621107440019529" blue="0.96728758896502598" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="a8Q-co-NMo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-7" id="0oi-Zd-Sar"/>
-                            <constraint firstItem="PAq-xX-MPA" firstAttribute="top" secondItem="3d3-GV-K28" secondAttribute="bottom" constant="33" id="0pI-1F-nen"/>
+                            <constraint firstItem="PAq-xX-MPA" firstAttribute="top" secondItem="3d3-GV-K28" secondAttribute="bottom" constant="23" id="0pI-1F-nen"/>
                             <constraint firstItem="3d3-GV-K28" firstAttribute="trailing" secondItem="PAq-xX-MPA" secondAttribute="trailing" id="TGh-ux-A4v"/>
                             <constraint firstItem="PAq-xX-MPA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="27" id="VuS-gi-ShP"/>
                             <constraint firstItem="U6j-Dz-npP" firstAttribute="leading" secondItem="3d3-GV-K28" secondAttribute="trailing" constant="8" symbolic="YES" id="YNq-Ak-xrs"/>
@@ -98,9 +98,9 @@ All rights reserved.</string>
                             <constraint firstItem="3d3-GV-K28" firstAttribute="top" secondItem="U6j-Dz-npP" secondAttribute="top" id="fvL-cx-yHo"/>
                             <constraint firstItem="us8-fj-wz2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="12" id="htW-xf-uQb"/>
                             <constraint firstItem="us8-fj-wz2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="iSk-0m-kxn"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="a8Q-co-NMo" secondAttribute="bottom" constant="56.5" id="njb-cP-xor"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="a8Q-co-NMo" secondAttribute="bottom" constant="20" id="njb-cP-xor"/>
                             <constraint firstItem="us8-fj-wz2" firstAttribute="centerX" secondItem="a8Q-co-NMo" secondAttribute="centerX" id="pGu-Au-KJ3"/>
-                            <constraint firstItem="U6j-Dz-npP" firstAttribute="top" secondItem="us8-fj-wz2" secondAttribute="bottom" constant="72" id="pZq-Dd-6C9"/>
+                            <constraint firstItem="U6j-Dz-npP" firstAttribute="top" secondItem="us8-fj-wz2" secondAttribute="bottom" constant="42" id="pZq-Dd-6C9"/>
                             <constraint firstItem="qfz-af-PZE" firstAttribute="leading" secondItem="U6j-Dz-npP" secondAttribute="leading" id="rJ0-HW-AyA"/>
                             <constraint firstItem="qfz-af-PZE" firstAttribute="trailing" secondItem="U6j-Dz-npP" secondAttribute="trailing" id="yLu-OJ-eq0"/>
                         </constraints>

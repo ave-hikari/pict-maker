@@ -48,6 +48,8 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         labelColorPicker.delegate = self
         labelColorPicker.dataSource = self
         self.view.addSubview(labelColorPicker)
+        
+        labelColorPicker.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,6 +82,7 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             self.stampLabel = nil
             //何度もラベルを画像に貼れるように画像にラベルをセットし終わったらtextFieldを空にする
             addText.text = nil
+            labelColorPicker.hidden = true
             
         } else {
             self.stampLabel = UILabel(frame: CGRectMake(50, 50, 120, 20));
@@ -88,6 +91,8 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             self.stampLabel.backgroundColor = UIColor.clearColor()
             self.mainImage.addSubview(stampLabel)
             setText.setTitle("set", forState: UIControlState.Normal)
+            
+            labelColorPicker.hidden = false
         }
     }
     
