@@ -71,12 +71,11 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     
     @IBAction func tapAddTextBtn(sender: AnyObject) {
-        println(__FUNCTION__)
         
         //ラベルが画面上にすでに載せられている場合
         if (self.stampLabel != nil) {
             setText.setTitle("paste", forState: UIControlState.Normal)
-            let tempImage = self.drawText(mainImage.image!, addText: addText.text)
+            let tempImage = self.drawText(mainImage.image!, addText: addText.text!)
             mainImage.image = tempImage
             self.stampLabel.removeFromSuperview()
             self.stampLabel = nil
@@ -98,8 +97,7 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     //保存ボタンをタップするとライブラリに保存し、確認アラートを表示する
     func tappedSaveButton(sender: UIButton) {
-        println(__FUNCTION__)
-        UIImageWriteToSavedPhotosAlbum(mainImage.image, nil, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(mainImage!.image!, nil, nil, nil)
         
         let saveAlert = UIAlertController(title: nil, message: "画像を保存しました", preferredStyle: .Alert)
         self.presentViewController(saveAlert, animated: true, completion: { () -> Void in
@@ -128,7 +126,7 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     //表示内容
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickColorArr[row].name!
     }
     
@@ -156,9 +154,6 @@ extension DrawViewController {
         //ラベルの描画領域を設定する
         let textRect  = CGRectMake((self.stampLabel.frame.origin.x * image.size.width) / mainImage.frame.width, (self.stampLabel.frame.origin.y * image.size.height) / mainImage.frame.height, image.size.width - 5, image.size.height - 5)
         
-        //プロパティつくる
-        let textDrawView = UIImageView()
-        
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         let textFontAttributes = [
             NSFontAttributeName: font,
@@ -175,7 +170,7 @@ extension DrawViewController {
     }
     
     //ドラッグしたときによばれる
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         
         for touch: AnyObject in touches{

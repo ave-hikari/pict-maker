@@ -8,15 +8,15 @@ class AppUtility {
     //https://gist.github.com/arshad/de147c42d7b3063ef7bc
     static func colorWithHexString (hex:String) -> UIColor {
         
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+        let cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
-        if (count(cString as String) != 6) {
+        if ((cString as String).characters.count != 6) {
             return UIColor.grayColor()
         }
         
-        var rString = (cString as NSString).substringWithRange(NSRange(location: 0, length: 2))
-        var gString = (cString as NSString).substringWithRange(NSRange(location: 2, length: 2))
-        var bString = (cString as NSString).substringWithRange(NSRange(location: 4, length: 2))
+        let rString = (cString as NSString).substringWithRange(NSRange(location: 0, length: 2))
+        let gString = (cString as NSString).substringWithRange(NSRange(location: 2, length: 2))
+        let bString = (cString as NSString).substringWithRange(NSRange(location: 4, length: 2))
         
         var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
         NSScanner(string: rString).scanHexInt(&r)

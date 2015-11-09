@@ -46,7 +46,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     }
     
     // 写真を選択した時に呼ばれる
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         // 遷移するViewを定義
         let drawViewController:DrawViewController = DrawViewController(nibName: "DrawViewController", bundle: NSBundle.mainBundle())
@@ -54,7 +54,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         if info[UIImagePickerControllerEditedImage] != nil {
             let image = info[UIImagePickerControllerEditedImage] as! UIImage
             drawViewController.tempImage = image
-            println(image)
+            print(image)
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
         
