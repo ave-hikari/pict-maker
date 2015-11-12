@@ -74,8 +74,6 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         //ラベルが画面上にすでに載せられている場合
         if (self.stampLabel != nil) {
             setText.setTitle("paste", forState: UIControlState.Normal)
-            print("めいんいめーじ:", mainImage.image!)
-            print("あどてきすと:", addText.text!)
             let tempImage = self.drawText(mainImage.image!, addText: addText.text!)
             mainImage.image = tempImage
             self.stampLabel.removeFromSuperview()
