@@ -14,7 +14,6 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     var tempImage: UIImage!
     
     @IBOutlet weak var setText: UIButton!
-    @IBOutlet weak var newImage: UIImage!
     
     @IBOutlet weak var addText: UITextField!
     
@@ -75,6 +74,8 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         //ラベルが画面上にすでに載せられている場合
         if (self.stampLabel != nil) {
             setText.setTitle("paste", forState: UIControlState.Normal)
+            print("めいんいめーじ:", mainImage.image!)
+            print("あどてきすと:", addText.text!)
             let tempImage = self.drawText(mainImage.image!, addText: addText.text!)
             mainImage.image = tempImage
             self.stampLabel.removeFromSuperview()
@@ -162,11 +163,11 @@ extension DrawViewController {
         ]
         addText.drawInRect(textRect, withAttributes: textFontAttributes)
         //コンテキストをイメージとして生成する
-        self.newImage = UIGraphicsGetImageFromCurrentImageContext();
-        //イメージ生成かんりょう
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext();
+        //イメージ生成完了
         UIGraphicsEndImageContext()
         
-        return self.newImage
+        return newImage
     }
     
     //ドラッグしたときによばれる
@@ -176,9 +177,9 @@ extension DrawViewController {
         for touch: AnyObject in touches{
             
             let touchLocation = touch.locationInView(view)
-            
-            self.stampLabel.transform = CGAffineTransformMakeTranslation(touchLocation.x - self.stampLabel.center.x, touchLocation.y - self.stampLabel.center.y)
-            
+            if (self.stampLabel != nil) {
+                self.stampLabel.transform = CGAffineTransformMakeTranslation(touchLocation.x - self.stampLabel.center.x, touchLocation.y - self.stampLabel.center.y)
+            }
         }
     }
 }

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A847CD4A-09E6-458F-B9C7-8499CC428E16</string>
 	<key>IDESourceControlProjectName</key>
-	<string>PictMaker</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>CF18DFAE8C39F22B8E16DAF5F687A6EC12ECED41</key>
 		<string>https://make-app.backlog.jp/git/STAMP_MAKER/stamp-maker.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>StampMaker/PictMaker.xcodeproj</string>
+	<string>StampMaker/PictMaker.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>CF18DFAE8C39F22B8E16DAF5F687A6EC12ECED41</key>
