@@ -83,6 +83,7 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             labelColorPicker.hidden = true
             
         } else {
+            // ラベルの色が選択されない場合、白色を設定しておく
             self.stampLabel = UILabel(frame: CGRectMake(50, 50, 120, 20));
             self.stampLabel.text = addText.text
             self.stampLabel.textColor = UIColor.whiteColor()
