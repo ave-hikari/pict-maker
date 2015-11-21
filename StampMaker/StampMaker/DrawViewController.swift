@@ -86,6 +86,7 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             self.stampLabel = UILabel(frame: CGRectMake(50, 50, 120, 20));
             self.stampLabel.text = addText.text
             self.stampLabel.textColor = UIColor.whiteColor()
+            tempColor = self.stampLabel.textColor
             self.stampLabel.backgroundColor = UIColor.clearColor()
             self.mainImage.addSubview(stampLabel)
             setText.setTitle("set", forState: UIControlState.Normal)
