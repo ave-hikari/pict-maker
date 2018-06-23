@@ -48,18 +48,18 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         labelColorPicker.dataSource = self
         self.view.addSubview(labelColorPicker)
         
-        labelColorPicker.hidden = true
+        labelColorPicker.isHidden = true
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         // ライブラリで選択した画像をimageViewのimageにセット
         mainImage.image = tempImage
         
-        saveButton = UIBarButtonItem(title: "save", style: .Plain, target: self, action: "tappedSaveButton:")
+        saveButton = UIBarButtonItem(title: "save", style: .plain, target: self, action: Selector("tappedSaveButton:"))
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
@@ -73,14 +73,14 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         
         //ラベルが画面上にすでに載せられている場合
         if (self.stampLabel != nil) {
-            setText.setTitle("paste", forState: UIControlState.Normal)
-            let tempImage = self.drawText(mainImage.image!, addText: addText.text!)
+            setText.setTitle("paste", for: UIControlState.Normal)
+            let tempImage = self.drawText(image: mainImage.image!, addText: addText.text!)
             mainImage.image = tempImage
             self.stampLabel.removeFromSuperview()
             self.stampLabel = nil
             //何度もラベルを画像に貼れるように画像にラベルをセットし終わったらtextFieldを空にする
             addText.text = nil
-            labelColorPicker.hidden = true
+            labelColorPicker.isHidden = true
             
         } else {
             // ラベルの色が選択されない場合、白色を設定しておく
@@ -90,7 +90,7 @@ class DrawViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             tempColor = self.stampLabel.textColor
             self.stampLabel.backgroundColor = UIColor.clearColor()
             self.mainImage.addSubview(stampLabel)
-            setText.setTitle("set", forState: UIControlState.Normal)
+            setText.setTitle("set", for: UIControlState.Normal)
             
             labelColorPicker.hidden = false
         }
